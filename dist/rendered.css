@@ -1,1 +1,8 @@
 /* add baseline css */
+.baseCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 300px;
+  margin: 10px;
+}

@@ -31,7 +31,6 @@ function chooseTeam() {
 }
 
 function addManager() {
-  console.log("adding manager");
   inquirer.prompt(prompts.promptManager).then((res) => {
     const mng = new Manager(
       res.managerName,

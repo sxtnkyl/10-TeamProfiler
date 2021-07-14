@@ -1,22 +1,44 @@
 //generate a card by class
 function card(obj) {
   //figure out how to determine type
-  console.log(obj, obj.getRole(), obj.getIcon());
   let dynamicInfo =
     obj.getRole() === "Manager"
       ? obj.getOfficeNumber()
       : obj.getRole() === "Engineer"
       ? obj.getGithub()
       : obj.getSchool();
+  let prefix =
+    obj.getRole() === "Manager"
+      ? "Office Number: "
+      : obj.getRole() === "Engineer"
+      ? "Github: "
+      : "School: ";
 
+  function hasgh() {
+    if (prefix === "Github: ") {
+      return (
+        '<a href="https://github.com/' +
+        dynamicInfo +
+        '">' +
+        dynamicInfo +
+        "</a>"
+      );
+    }
+    return dynamicInfo;
+  }
   return `
-  <div class="card text-center">
-    <h4>${obj.getName()}</h4>
-    <i class="fa ${obj.getIcon()}" />
-    <div>${obj.getId()}</div>
-    <div>${obj.getEmail()}</div>
-    <div>${obj.getRole()}</div>
-    <div>${dynamicInfo}</div>
+  <div class="card baseCard">
+    <div class="card-header bg-primary text-white">
+      <h3 class="card-title">${obj.getName()}</h3>
+      <h4 class="card-title"><i class="fas ${obj.getIcon()} mr-3"></i>${obj.getRole()}</h4>
+    </div>
+    <div class="card-body bg-light">
+      <ul class="list-group">
+        <li class="list-group-item">ID: ${obj.getId()}</li>
+        <li class="list-group-item">Email: <a href="mailto:${obj.getEmail()}">${obj.getEmail()}</a></li>
+        <li class="list-group-item">${prefix}${hasgh()}</li>
+      </ul>
+    </div>
   </div>
   `;
 }
@@ -24,7 +46,7 @@ function card(obj) {
 //row for manager
 function makeManagerRow(manager) {
   return `
-  <div id="managerRow" class="row">
+  <div id="managerRow" class="row justify-content-center">
     ${card(manager)}
   </div>
   `;
@@ -33,8 +55,8 @@ function makeManagerRow(manager) {
 //row for Engineers
 function makeEngineerRow(arr) {
   return `
-  <div id="engineerRow" class="row">
-    ${arr.map((eng) => card(eng))}
+  <div id="engineerRow" class="row justify-content-center">
+    ${arr.map((eng) => eng !== "," && card(eng))}
   </div>
   `;
 }
@@ -42,8 +64,8 @@ function makeEngineerRow(arr) {
 //row for Interns
 function makeInternRow(arr) {
   return `
-  <div id="internRow" class="row">
-    ${arr.map((intern) => card(intern))}
+  <div id="internRow" class="row justify-content-center">
+    ${arr.map((intern) => intern !== "," && card(intern))}
   </div>
   `;
 }
@@ -60,9 +82,16 @@ function makePage(manager, engineers, interns) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="Description" content="HW10" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="rendered.css" />
     <title>Team Profile Builder</title>
   </head>
+
+  <div class="jumbotron jumbotron-fluid bg-danger text-white text-center">
+    <div class="container">
+      <h1 class="display-4">My Team</h1>
+    </div>
+  </div>
 
   <body>
     <main class="d-flex min-vh-100">

@@ -18,7 +18,7 @@ const prompManager = [
   },
   {
     type: "input",
-    name: "managerOfficeNumber",
+    name: "officeNumber",
     message: "Enter the manager's office number",
   },
 ];
@@ -72,7 +72,7 @@ const promptChooseTeam = [
     type: "list",
     name: "chooseTeam",
     massage: "Who would you like to add to your team?",
-    choices: ["Manager", "Engineer", "Intern", "Done"],
+    choices: ["Engineer", "Intern", "Done"],
   },
 ];
 

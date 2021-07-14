@@ -1,6 +1,6 @@
 //promp
 
-const prompManager = [
+const promptManager = [
   {
     type: "input",
     name: "managerName",
@@ -22,7 +22,7 @@ const prompManager = [
     message: "Enter the manager's office number",
   },
 ];
-const prompEngineer = [
+const promptEngineer = [
   {
     type: "input",
     name: "engineerName",
@@ -44,7 +44,7 @@ const prompEngineer = [
     message: "Enter the engineer's github username",
   },
 ];
-const prompIntern = [
+const promptIntern = [
   {
     type: "input",
     name: "internName",
@@ -76,4 +76,9 @@ const promptChooseTeam = [
   },
 ];
 
-module.exports = { prompManager, prompEngineer, prompIntern, promptChooseTeam };
+module.exports = {
+  promptManager,
+  promptEngineer,
+  promptIntern,
+  promptChooseTeam,
+};

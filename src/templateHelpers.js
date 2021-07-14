@@ -1,10 +1,11 @@
 //generate a card by class
 function card(obj) {
   //figure out how to determine type
+  console.log(obj, obj.getRole(), obj.getIcon());
   let dynamicInfo =
-    obj.getRole === "Manager"
+    obj.getRole() === "Manager"
       ? obj.getOfficeNumber()
-      : obj.getRole === "Engineer"
+      : obj.getRole() === "Engineer"
       ? obj.getGithub()
       : obj.getSchool();
 
@@ -48,7 +49,7 @@ function makeInternRow(arr) {
 }
 
 //full page layout
-export function makePage(manager, engineers, interns) {
+function makePage(manager, engineers, interns) {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -76,3 +77,5 @@ export function makePage(manager, engineers, interns) {
   </html>
   `;
 }
+
+module.exports = { makePage };
